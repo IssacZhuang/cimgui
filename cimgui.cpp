@@ -11,6 +11,13 @@
 #include "./imgui/imgui_internal.h"
 #include "cimgui.h"
 
+CimguiErrorCallback g_errorCallback = nullptr;
+
+extern "C" CIMGUI_API void cimgui_set_error_callback(CimguiErrorCallback callback)
+{
+    g_errorCallback = callback;
+}
+
 
 
 CIMGUI_API ImVec2* ImVec2_ImVec2_Nil(void)
