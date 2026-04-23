@@ -101,6 +101,10 @@ jobs:
       - name: Build
         run: cmake --build build
 
+      - name: Strip Android Library
+        if: matrix.toolchain == 'android'
+        run: ${{ steps.setup-ndk.outputs.ndk-path }}/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-strip --strip-all build/cimgui.so
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
